@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"net/http"
+	"strconv"
 )
 
 var playerToGuess = Player{
@@ -23,8 +23,15 @@ var playerToGuess = Player{
 	League:       "LCK",
 }
 
+type GuessResult struct {
+	Id          int           `json:"id"`
+	Player      Player        `json:"player"`
+	CompareData CompareResult `json:"compare"`
+}
+
 func GuessPlayer(c echo.Context) error {
 	var player Player
+	var result GuessResult
 	playerId := c.Param("playerId")
 	currentContext := context.TODO()
 	client, err := GetConnection(currentContext)
@@ -38,15 +45,26 @@ func GuessPlayer(c echo.Context) error {
 	}()
 	collection := client.Database("lolplayers").Collection("players")
 	opt := options.FindOneOptions{}
-	err = collection.FindOne(currentContext, bson.D{{"id", playerId}}, &opt).Decode(player)
+	err = collection.FindOne(currentContext, bson.D{{"id", playerId}}, &opt).Decode(&player)
+	if err != nil {
+		panic(err)
+		c.JSON(http.StatusNotFound, GuessResult{})
+	}
+	response := Compare(player, playerToGuess)
+	id, err := strconv.Atoi(playerId)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, GuessResult{})
+		return err
+	}
+	result = GuessResult{
+		Id:          id,
+		Player:      player,
+		CompareData: response,
+	}
 	if err != nil {
 		panic(err)
 	}
-	response, err := json.Marshal(Compare(player, playerToGuess))
-	if err != nil {
-		panic(err)
-	}
-	if err = c.JSON(http.StatusOK, response); err != nil {
+	if err = c.JSON(http.StatusOK, result); err != nil {
 		return err
 	}
 	return nil

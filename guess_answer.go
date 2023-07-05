@@ -1,8 +1,8 @@
 package main
 
-type GuessAnswer struct {
-	Role              bool
-	Country           string
-	League            bool
-	WorldsApparitions string
+type CompareResult struct {
+	Id      string `json:"id"`
+	Role    bool   `json:"role"`
+	Country string `json:"country"`
+	League  bool   `json:"league"`
 }
