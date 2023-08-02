@@ -1,6 +1,6 @@
 module lolesportapi
 
-go 1.18
+go 1.20
 
 require (
 	github.com/RobinToubi/countries v1.0.1
