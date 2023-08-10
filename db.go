@@ -11,7 +11,7 @@ import (
 
 func GetConnection(context context.Context) (*mongo.Client, error) {
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	uri := fmt.Sprintf(os.Getenv("CONNECTIONSTRING"))
+	uri := fmt.Sprint(os.Getenv("CONNECTIONSTRING"))
 	opts := options.Client().ApplyURI(uri).SetServerAPIOptions(serverAPI)
 	// Create a new client and connect to the server
 	client, err := mongo.Connect(context, opts)
