@@ -3,3 +3,5 @@
 
 # Used to debug golang apps on Visual Studio Code
 __debug*
+dist/
+vendor/
