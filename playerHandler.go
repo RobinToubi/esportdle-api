@@ -38,7 +38,7 @@ func GuessPlayer(c echo.Context) error {
 	}()
 	collection := client.Database("lolplayers").Collection("players")
 	opt := options.FindOneOptions{}
-	err = collection.FindOne(currentContext, bson.D{{"id", playerId}}, &opt).Decode(&player)
+	err = collection.FindOne(currentContext, bson.D{{Key: "id", Value: playerId}}, &opt).Decode(&player)
 	if err != nil {
 		_ = c.JSON(http.StatusNotFound, GuessResult{})
 		return err
