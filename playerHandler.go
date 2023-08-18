@@ -73,11 +73,28 @@ func GetPlayers(c echo.Context) error {
 	return nil
 }
 
+func RefreshPlayerToGuess(c echo.Context) error {
+	randomPlayer, err := DefineRandomPlayer()
+	if err != nil {
+		return err
+	}
+	dailyPlayer = randomPlayer
+	return nil
+}
+
 func getDailyPlayer() (*Player, error) {
-	var players []Player
 	if dailyPlayer != nil {
 		return dailyPlayer, nil
 	}
+	randomPlayer, err := DefineRandomPlayer()
+	if err != nil {
+		return nil, err
+	}
+	return randomPlayer, nil
+}
+
+func DefineRandomPlayer() (*Player, error) {
+	var players []Player
 	players, err := getPlayersArray()
 	if err != nil {
 		return nil, err

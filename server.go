@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/joho/godotenv"
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -20,6 +21,7 @@ func main() {
 		return c.String(http.StatusOK, "Hello world.")
 	})
 	server.GET("/players", GetPlayers)
+	server.PATCH("/admin/refresh", RefreshPlayerToGuess)
 	server.POST("/:playerId/guess", GuessPlayer)
 	server.Logger.Fatal(server.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))))
 }
