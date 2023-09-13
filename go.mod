@@ -1,4 +1,4 @@
-module github.com/RobinToubi/lolesportapi
+module gitlab.com/RobinToubi/lolesportapi
 
 go 1.20
 
