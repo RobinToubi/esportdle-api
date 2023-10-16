@@ -39,6 +39,7 @@ func GuessPlayer(c echo.Context) error {
 			break
 		}
 	}
+	c.Logger().Info("Guess the player : %s", guessedPlayer.SummonerName)
 	compare := Compare(guessedPlayer, validPlayer)
 	id, err := strconv.Atoi(playerId)
 	if err != nil {

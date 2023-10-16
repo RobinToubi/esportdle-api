@@ -1,1 +1,1 @@
-web: lolesportdle-api
+web: ./bin/lolesportapi
