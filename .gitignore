@@ -5,3 +5,5 @@
 __debug*
 dist/
 vendor/
+
+*.exe
