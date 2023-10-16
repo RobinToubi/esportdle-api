@@ -1,1 +1,1 @@
-web: go build && ./bin/lolesportapi.exe
+web: go build && ./bin/lolesportapi
