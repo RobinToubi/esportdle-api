@@ -1,1 +1,1 @@
-web: go build && lolesportapi.exe
+web: go mod vendor || go build || ./bin/lolesportapi
