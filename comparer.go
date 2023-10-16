@@ -13,7 +13,7 @@ func init() {
 }
 
 // Comparing the guessedPlayer to the result stored in API.
-func Compare(guessedPlayer, currentResult Player) CompareResult {
+func Compare(guessedPlayer, currentResult *Player) CompareResult {
 	return CompareResult{
 		Id:      guessedPlayer.ID,
 		Role:    guessedPlayer.Role == currentResult.Role,

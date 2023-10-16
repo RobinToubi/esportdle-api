@@ -20,8 +20,6 @@ func main() {
 	server.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello world.")
 	})
-	server.GET("/players", GetPlayers)
-	server.PATCH("/admin/refresh", RefreshPlayerToGuess)
 	server.POST("/:playerId/guess", GuessPlayer)
 	server.Logger.Fatal(server.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))))
 }
