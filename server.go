@@ -20,5 +20,5 @@ func main() {
 		return c.String(http.StatusOK, "Hello world.")
 	})
 	server.POST("/:playerId/guess", GuessPlayer)
-	server.Logger.Fatal(server.Start(fmt.Sprintf(":%s", ":8080")))
+	server.Logger.Fatal(server.Start(fmt.Sprintf(":%s", "8080")))
 }
