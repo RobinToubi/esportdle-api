@@ -76,8 +76,9 @@ func defineRandomPlayer(players []Player) (*Player, error) {
 }
 
 func getRandomNumber(collectionLength int64) int64 {
-	t := time.Now()
-	t1 := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, time.UTC)
+	location, _ := time.LoadLocation("Europe/Paris")
+	t := time.Now().In(location)
+	t1 := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, location)
 	random := rand.NewSource(t1.Unix())
 	return random.Int63() % collectionLength
 }
