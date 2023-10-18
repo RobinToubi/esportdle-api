@@ -50,6 +50,11 @@ func GuessPlayer(c echo.Context) error {
 		Id:          id,
 		Player:      *guessedPlayer,
 		CompareData: compare,
+		ValidPlayer: Player{},
+	}
+	guesses := c.QueryParam("guesses")
+	if os.Getenv("MAX_GUESSES") == guesses {
+		result.ValidPlayer = *validPlayer
 	}
 	if err = c.JSON(http.StatusOK, result); err != nil {
 		return err

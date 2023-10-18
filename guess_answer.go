@@ -13,4 +13,5 @@ type GuessResult struct {
 	Id          int           `json:"id"`
 	Player      Player        `json:"player"`
 	CompareData CompareResult `json:"compare"`
+	ValidPlayer Player        `json:"validPlayer,omitempty"`
 }
