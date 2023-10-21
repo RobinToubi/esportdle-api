@@ -1,1 +1,1 @@
-web: go mod vendor || go build || ./bin/lolesportapi
+web: go mod vendor || go build || ./bin/esportdle-api
