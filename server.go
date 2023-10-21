@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
@@ -17,5 +18,5 @@ func main() {
 		return c.String(http.StatusOK, "Hello world.")
 	})
 	server.POST("/:playerId/guess", GuessPlayer)
-	server.Logger.Fatal(server.Start(fmt.Sprintf(":%s", "12000")))
+	server.Logger.Fatal(server.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))))
 }
