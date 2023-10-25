@@ -1,5 +1,5 @@
 [build]
-  command = "./build.sh"
+  command = "go mod vendor || go build || ./bin/lolesportapi"
 
 [build.environment]
   GO_IMPORT_PATH = "github.com/RobinToubi/esportdle-api"
