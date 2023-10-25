@@ -1,5 +1,5 @@
 [build]
-  command = "go mod vendor && go build ./... && ./esportdle-api"
+  command = "go build ./... && ./esportdle-api"
 
 [build.environment]
   GO_IMPORT_PATH = "github.com/RobinToubi/esportdle-api"
