@@ -1,6 +1,5 @@
 [build]
   command = "./build.sh"
-  functions = "functions"
 
 [build.environment]
   GO_IMPORT_PATH = "github.com/RobinToubi/esportdle-api"
