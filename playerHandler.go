@@ -53,7 +53,7 @@ func GuessPlayer(c echo.Context) error {
 		ValidPlayer: Player{},
 	}
 	guesses := c.QueryParam("guesses")
-	if os.Getenv("MAX_GUESSES") == guesses {
+	if os.Getenv("MAX_GUESSES") == guesses || validPlayer.ID == guessedPlayer.ID {
 		result.ValidPlayer = *validPlayer
 	}
 	if err = c.JSON(http.StatusOK, result); err != nil {

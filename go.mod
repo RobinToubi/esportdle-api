@@ -1,4 +1,4 @@
-module gitlab.com/RobinToubi/lolesportapi
+module github.com/RobinToubi/esportdle-api
 
 go 1.20
 
